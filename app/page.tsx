@@ -288,10 +288,13 @@ function Chatbot() {
       graduation: "Expected 2025",
     },
     experience: [
-      "Full-Stack Developer at Procit BV, Netherlands (Remote) - April 2025 to Present",
-      "Co-Founder & CTO at Softrflow Pvt. Ltd. (Remote), USA - June 2024 to Present",
+      "Mid-Level Full Stack Developer & Team Lead (CRM Product) at Skill Prompt - January 2026 to Present",
+      "Managing Director & Full Stack Developer at Suindra Groups Pvt. Ltd. (Part-Time) - June 2026 to Present",
+      "Full-Stack Developer at Procit BV, Netherlands (Remote) - April 2025 to December 2025",
       "Research Intern at IOT R&D, Kathmandu University - March 2025 to Present",
       "Internship as Full Stack Developer & LLM Engineer at Yagya Foundry - June 2024 to March 2025",
+      "Full Stack Web Developer at Kathmandu University Youth Red Cross Circle - November 2024 to April 2025",
+      "Open Source Contributor at IAGA Sentinel - June 2026 to Present",
     ],
     skills: [
       "Programming: JavaScript, Python, C++, TypeScript",
@@ -307,6 +310,7 @@ function Chatbot() {
       "CourseCraft - AI-powered course generation platform using Generative AI",
       "Health Lens - React Native app with AI-powered nutrition guidance",
       "Agniparikshya - Emergency route optimization system using Dijkstra's algorithm",
+      "Buynow - Full-fledged multi-vendor e-commerce website and mobile app",
     ],
     achievements: [
       "Hult Prize Participant 2024/2025 with Health Lens project",
@@ -328,7 +332,7 @@ function Chatbot() {
     }
 
     if (input.includes("experience") || input.includes("work") || input.includes("job")) {
-      return `Ravi has diverse professional experience: ${raviData.experience.slice(0, 2).join("; ")}. He's currently working as a Full-Stack Developer at Procit BV and is also a Co-Founder & CTO at Softrflow.`
+      return `Ravi has diverse professional experience: ${raviData.experience.slice(0, 2).join("; ")}. He's currently working as a Team Lead at Skill Prompt and is also Managing Director & Full Stack Developer at Suindra Groups.`
     }
 
     if (input.includes("education") || input.includes("study") || input.includes("university")) {
@@ -344,7 +348,7 @@ function Chatbot() {
     }
 
     if (input.includes("ai") || input.includes("artificial intelligence") || input.includes("machine learning")) {
-      return "Ravi is passionate about AI and ML! He has experience with LLMs, NLP, Computer Vision, and AI Integration. He's worked on projects like CourseCraft (AI-powered course generation) and Health Lens (AI nutrition guidance). He's also conducting research on AI-driven structural health monitoring."
+      return "Ravi is passionate about AI and ML! He has experience with LLMs, NLP, Computer Vision, and AI Integration. He's worked on projects like CourseCraft (AI-powered course generation) and Health Lens (AI nutrition guidance). He's also conducting research on AI-driven structural health monitoring and contributing to IAGA Sentinel, an AI governance and compliance platform."
     }
 
     if (input.includes("hello") || input.includes("hi") || input.includes("hey")) {
@@ -586,9 +590,18 @@ function ProjectDetailModal({ project, isOpen, onClose }: any) {
                   <Button variant="default" className="bg-blue-600 hover:bg-blue-700">
                     <FileText className="w-4 h-4 mr-2" /> Download Report
                   </Button>
-                  <Button variant="outline" className="border-green-600 text-green-500 hover:bg-green-900/20">
-                    <Github className="w-4 h-4 mr-2" /> View on GitHub
+                  <Button variant="outline" className="border-green-600 text-green-500 hover:bg-green-900/20" asChild>
+                    <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="w-4 h-4 mr-2" /> View on GitHub
+                    </Link>
                   </Button>
+                  {project.website && project.website !== "#" && (
+                    <Button variant="outline" className="border-blue-600 text-blue-400 hover:bg-blue-900/20" asChild>
+                      <Link href={project.website} target="_blank" rel="noopener noreferrer">
+                        <ArrowRight className="w-4 h-4 mr-2" /> Live Site
+                      </Link>
+                    </Button>
+                  )}
                   <Button variant="outline" className="border-gray-700 text-gray-400 hover:bg-gray-800">
                     <Heart className="w-4 h-4 mr-2" /> Like
                   </Button>
@@ -773,6 +786,15 @@ export default function Portfolio() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
   const [selectedProject, setSelectedProject] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [showIagaAlert, setShowIagaAlert] = useState(false)
+
+  useEffect(() => {
+    if (!loading) {
+      setShowIagaAlert(true)
+      const timer = setTimeout(() => setShowIagaAlert(false), 10000)
+      return () => clearTimeout(timer)
+    }
+  }, [loading])
 
   const skills = [
     { name: "JavaScript", level: 90 },
@@ -787,11 +809,47 @@ export default function Portfolio() {
 
   const projects = [
     {
+      title: "Buynow E-Commerce Platform & App",
+      description:
+        "Developed a full-featured multi-vendor e-commerce platform and mobile application as part of a two-developer team, contributing to both frontend and backend development. Built customer, seller, admin, and support portals with features including product management, advanced search and filtering, shopping cart, secure checkout, order tracking, reviews, real-time chat, seller analytics, advertising campaigns, ticket management, and refund processing. Integrated multiple payment gateways including eSewa, Khalti, Fonepay Dynamic QR, and Cash on Delivery, along with Nepal Can Move (NCM) logistics for shipping and tracking. Developed scalable backend services, authentication systems, notifications, and cloud storage integrations, delivering a complete end-to-end e-commerce solution for web and mobile platforms.",
+      tech: ["React", "React Native", "Node.js", "MongoDB"],
+      github: "#",
+      website: "#",
+      image: "/placeholder.svg",
+      features: [
+        "Built customer, seller, admin, and support portals with role-based access",
+        "Implemented product management, advanced search/filtering, cart, and secure checkout",
+        "Added order tracking, reviews, real-time chat, seller analytics, and advertising campaigns",
+        "Integrated eSewa, Khalti, Fonepay Dynamic QR, Cash on Delivery, and NCM logistics for shipping",
+        "Built ticket management and refund processing workflows for customer support",
+        "Developed scalable backend services, authentication, notifications, and cloud storage integration",
+      ],
+      tags: ["ecommerce", "multi-vendor", "react-native", "payments"],
+      tabs: ["Customer", "Seller", "Admin"],
+      roles: [
+        {
+          name: "Customer Portal",
+          features: ["Product Browsing", "Cart & Checkout", "Order Tracking"],
+        },
+        {
+          name: "Seller Portal",
+          features: ["Product Management", "Analytics", "Ad Campaigns"],
+        },
+        {
+          name: "Admin & Support",
+          features: ["Ticket Management", "Refunds", "Platform Oversight"],
+        },
+      ],
+      badges: ["Multi-Vendor", "Multi-Payment Gateway", "Web + Mobile"],
+      screenshot: "/placeholder.svg",
+    },
+    {
       title: "ProjectNest",
       description:
         "Developed a MERN-based project management app with role-based views for Admin, Supervisor, and Student. Enabled task allocation, real-time chat, project tracking, and secure access with API integration.",
       tech: ["React", "Node.js", "MongoDB", "Socket.io"],
       github: "https://github.com/ravipajiyar/ProjectNest",
+      website: "#",
       image: "/projectnest.svg",
       features: [
         "Implemented role-based authentication system for Admin, Supervisor, and Student access",
@@ -824,6 +882,7 @@ export default function Portfolio() {
         "Developed a web app using React, Flask, and Plotly to visualize Netflix content trends, genres, and user sentiments with interactive filtering and insights for content strategy.",
       tech: ["React", "Flask", "Plotly", "Python"],
       github: "https://github.com/ravipajiyar/Netflix-Analytics",
+      website: "#",
       image: "/netflix.svg",
       features: [
         "Built interactive dashboards for content analysis using Plotly and React",
@@ -856,6 +915,7 @@ export default function Portfolio() {
         "AI-powered course generation platform using MERN stack and Generative AI to create structured study modules and content for targeted subjects.",
       tech: ["React", "Node.js", "MongoDB", "AI"],
       github: "https://github.com/ravipajiyar/Course-Craft",
+      website: "#",
       image: "/coursecraft.svg",
       features: [
         "Integrated Generative AI models for automatic course content creation",
@@ -888,6 +948,7 @@ export default function Portfolio() {
         "React Native app with AI-powered food scanning for nutritional analysis and personalized diet recommendations.",
       tech: ["React Native", "Node.js", "AI", "Computer Vision"],
       github: "https://github.com/ravipajiyar/HealthLens",
+      website: "#",
       image: "/healthlensmob.svg",
       features: [
         "Developed computer vision system for food recognition from photos",
@@ -920,6 +981,7 @@ export default function Portfolio() {
         "Emergency route optimization system using Dijkstra's algorithm and OpenStreetMap for fire brigade assistance in congested urban areas.",
       tech: ["JavaScript", "OpenStreetMap", "Algorithms"],
       github: "https://github.com/ravipajiyar/Agniparkishya",
+      website: "#",
       image: "/agniparikshya.svg",
       features: [
         "Implemented Dijkstra's algorithm for optimal route calculation in emergency scenarios",
@@ -952,6 +1014,7 @@ export default function Portfolio() {
         "Responsive web platform using Django and SQL for online book renting with interactive reader and bookmarking features.",
       tech: ["Django", "SQL", "JavaScript", "HTML/CSS"],
       github: "https://github.com/ravipajiyar/rentNread",
+      website: "#",
       image: "/rentandread.svg",
       features: [
         "Built comprehensive book catalog with advanced search and filtering",
@@ -978,24 +1041,329 @@ export default function Portfolio() {
       badges: ["Online Reader", "Rental System", "Responsive Design"],
       screenshot: "/rentandread.svg",
     },
+    {
+      title: "Sticky Notes",
+      description:
+        "A lightweight, intuitive sticky notes web app for quickly jotting down ideas, to-dos, and reminders, featuring a clean drag-and-drop interface with persistent storage so notes are always there when you come back.",
+      tech: ["React", "JavaScript", "CSS"],
+      github: "https://github.com/ravipajiyar/Sticky-Note",
+      website: "https://sticky-notes-pro.onrender.com/",
+      image: "/placeholder.svg",
+      features: [
+        "Drag-and-drop sticky notes with customizable colors",
+        "Persistent local storage so notes remain after refresh",
+        "Quick create, edit, and delete workflow for fast note-taking",
+        "Responsive layout for desktop and mobile use",
+      ],
+      tags: ["productivity", "react", "notes-app"],
+      tabs: ["Board", "Notes", "Settings"],
+      roles: [
+        {
+          name: "Note Board",
+          features: ["Drag & Drop", "Color Coding", "Resizing"],
+        },
+        {
+          name: "Note Editor",
+          features: ["Quick Edit", "Auto-Save", "Delete"],
+        },
+        {
+          name: "Storage",
+          features: ["Persistent Save", "Local Sync", "Reload Recovery"],
+        },
+      ],
+      badges: ["Drag & Drop", "Persistent Storage", "Lightweight"],
+      screenshot: "/placeholder.svg",
+    },
+    {
+      title: "Red Cross Website Redesign",
+      description:
+        "Led the redesign and rebuild of the official Kathmandu University Youth Red Cross Circle (KUYRCC) website, delivering a fully mobile-responsive experience built with React.js to better showcase the organization's activities, events, and volunteer programs.",
+      tech: ["React", "JavaScript", "Tailwind CSS"],
+      github: "https://github.com/ravipajiyar/redcross-website",
+      website: "https://yrcc.ku.edu.np/",
+      image: "/placeholder.svg",
+      features: [
+        "Rebuilt the beta version of the site using React.js with a fully responsive layout",
+        "Collaborated with the Media Head on creative direction and content presentation",
+        "Implemented sections for events, programs, gallery, and volunteer information",
+        "Conducted research and incorporated feedback to optimize user experience",
+      ],
+      tags: ["nonprofit", "react", "responsive-design"],
+      tabs: ["Home", "Events", "About"],
+      roles: [
+        {
+          name: "Public Site",
+          features: ["Events Listing", "Gallery", "Volunteer Info"],
+        },
+        {
+          name: "Content Layer",
+          features: ["Media Integration", "Responsive Sections", "SEO Basics"],
+        },
+        {
+          name: "Maintenance",
+          features: ["Content Updates", "Bug Fixes", "Performance Tuning"],
+        },
+      ],
+      badges: ["Mobile-Responsive", "Nonprofit", "Developer Head Led"],
+      screenshot: "/placeholder.svg",
+    },
+    {
+      title: "AI Cyber Law",
+      description:
+        "A research-driven platform exploring the intersection of artificial intelligence and cyber law, providing resources, case analysis, and tools to help understand legal and compliance considerations around AI systems.",
+      tech: ["React", "Node.js", "AI"],
+      github: "#",
+      website: "#",
+      image: "/placeholder.svg",
+      features: [
+        "Curated repository of AI-related cyber law cases and regulations",
+        "Searchable knowledge base with topic-based filtering",
+        "Summaries of key legal frameworks relevant to AI governance",
+        "Clean, content-first reading experience",
+      ],
+      tags: ["ai", "legal-tech", "research"],
+      tabs: ["Library", "Cases", "Resources"],
+      roles: [
+        {
+          name: "Knowledge Base",
+          features: ["Case Library", "Topic Filters", "Search"],
+        },
+        {
+          name: "Content Layer",
+          features: ["Article Summaries", "Tagging", "Citations"],
+        },
+        {
+          name: "Admin",
+          features: ["Content Management", "Updates", "Moderation"],
+        },
+      ],
+      badges: ["AI Governance", "Legal-Tech", "Research"],
+      screenshot: "/placeholder.svg",
+    },
+    {
+      title: "Expense Tracker",
+      description:
+        "A personal finance web app for logging daily expenses, categorizing spending, and visualizing monthly trends to help users stay on top of their budget.",
+      tech: ["React", "Node.js", "MongoDB"],
+      github: "#",
+      website: "#",
+      image: "/placeholder.svg",
+      features: [
+        "Add, edit, and categorize expenses with custom tags",
+        "Monthly and category-wise spending visualizations",
+        "Budget limit alerts and progress tracking",
+        "Exportable expense reports",
+      ],
+      tags: ["fintech", "react", "dashboard"],
+      tabs: ["Overview", "Add Expense", "Reports"],
+      roles: [
+        {
+          name: "Dashboard",
+          features: ["Spending Overview", "Category Breakdown", "Trends"],
+        },
+        {
+          name: "Entry Form",
+          features: ["Quick Add", "Categories", "Notes"],
+        },
+        {
+          name: "Reports",
+          features: ["Monthly Reports", "Export", "Budget Alerts"],
+        },
+      ],
+      badges: ["Personal Finance", "Data Visualization", "Budgeting"],
+      screenshot: "/placeholder.svg",
+    },
+    {
+      title: "Finance Manager",
+      description:
+        "A broader financial management tool for tracking income, expenses, savings goals, and investments in one consolidated dashboard, built to give users a clear picture of their overall financial health.",
+      tech: ["React", "Node.js", "PostgreSQL"],
+      github: "#",
+      website: "#",
+      image: "/placeholder.svg",
+      features: [
+        "Unified dashboard for income, expenses, and savings goals",
+        "Investment tracking with simple performance summaries",
+        "Custom financial goal setting and progress tracking",
+        "Secure authentication and data encryption",
+      ],
+      tags: ["fintech", "dashboard", "react"],
+      tabs: ["Dashboard", "Goals", "Investments"],
+      roles: [
+        {
+          name: "Overview",
+          features: ["Income vs Expense", "Net Worth", "Trends"],
+        },
+        {
+          name: "Goals",
+          features: ["Savings Targets", "Progress Bars", "Reminders"],
+        },
+        {
+          name: "Investments",
+          features: ["Portfolio Summary", "Performance", "Allocation"],
+        },
+      ],
+      badges: ["Financial Planning", "Secure", "Dashboard"],
+      screenshot: "/placeholder.svg",
+    },
+    {
+      title: "SLR Parser",
+      description:
+        "A compiler design project implementing an SLR (Simple LR) parser that builds parsing tables from a given context-free grammar and validates input strings against it, built as part of academic coursework in compiler construction.",
+      tech: ["Python", "Algorithms", "Compiler Design"],
+      github: "#",
+      website: "#",
+      image: "/placeholder.svg",
+      features: [
+        "Generates LR(0) item sets and SLR parsing tables from input grammar",
+        "Validates input strings using shift-reduce parsing logic",
+        "Visualizes parsing steps and stack states for learning purposes",
+        "Handles grammar conflict detection and reporting",
+      ],
+      tags: ["compiler-design", "academic", "parsing"],
+      tabs: ["Grammar", "Parse Table", "Trace"],
+      roles: [
+        {
+          name: "Grammar Input",
+          features: ["Rule Entry", "Validation", "Conflict Detection"],
+        },
+        {
+          name: "Parse Table",
+          features: ["Action Table", "Goto Table", "Item Sets"],
+        },
+        {
+          name: "Parser Trace",
+          features: ["Step-by-Step Trace", "Stack View", "Accept/Reject"],
+        },
+      ],
+      badges: ["Compiler Design", "Academic Project", "Algorithm-Heavy"],
+      screenshot: "/placeholder.svg",
+    },
+    {
+      title: "Saloon Management System",
+      description:
+        "A management system built for salons to handle appointment booking, staff scheduling, service catalogs, and billing, streamlining day-to-day salon operations for owners and customers alike.",
+      tech: ["React", "Node.js", "MySQL"],
+      github: "#",
+      website: "#",
+      image: "/placeholder.svg",
+      features: [
+        "Online appointment booking with staff and time-slot selection",
+        "Staff scheduling and availability management",
+        "Service catalog with pricing and duration management",
+        "Billing and invoice generation for completed services",
+      ],
+      tags: ["booking-system", "management", "react"],
+      tabs: ["Bookings", "Staff", "Billing"],
+      roles: [
+        {
+          name: "Customer Booking",
+          features: ["Service Selection", "Staff Pick", "Time Slots"],
+        },
+        {
+          name: "Staff Panel",
+          features: ["Schedule View", "Availability", "Service Updates"],
+        },
+        {
+          name: "Admin Billing",
+          features: ["Invoicing", "Revenue Tracking", "Service Pricing"],
+        },
+      ],
+      badges: ["Booking System", "Salon Ops", "Billing"],
+      screenshot: "/placeholder.svg",
+    },
+    {
+      title: "Suindra Groups Website",
+      description:
+        "Corporate website for Suindra Groups Pvt. Ltd., presenting the organization's ventures including Buynow, Sellnow, and Giftnow, along with company information, leadership, and contact details for partners and customers.",
+      tech: ["React", "Next.js", "Tailwind CSS"],
+      github: "#",
+      website: "#",
+      image: "/placeholder.svg",
+      features: [
+        "Showcases the organization's ventures: Buynow, Sellnow, and Giftnow",
+        "Company overview, leadership, and contact sections",
+        "Responsive corporate design optimized for all devices",
+        "SEO-friendly structure for better discoverability",
+      ],
+      tags: ["corporate-website", "react", "nextjs"],
+      tabs: ["Home", "Ventures", "Contact"],
+      roles: [
+        {
+          name: "Home",
+          features: ["Hero Section", "Venture Highlights", "News"],
+        },
+        {
+          name: "Ventures",
+          features: ["Buynow", "Sellnow", "Giftnow"],
+        },
+        {
+          name: "Contact",
+          features: ["Inquiry Form", "Location", "Social Links"],
+        },
+      ],
+      badges: ["Corporate Site", "Multi-Venture", "Responsive"],
+      screenshot: "/placeholder.svg",
+    },
+    {
+      title: "Todo App",
+      description:
+        "A clean and minimal to-do list application for managing daily tasks, featuring task prioritization, due dates, and progress tracking to help users stay organized.",
+      tech: ["React", "JavaScript", "CSS"],
+      github: "#",
+      website: "#",
+      image: "/placeholder.svg",
+      features: [
+        "Create, complete, and delete tasks with a simple interface",
+        "Task prioritization and due-date tagging",
+        "Progress tracking with completed vs pending task counts",
+        "Persistent storage so tasks remain across sessions",
+      ],
+      tags: ["productivity", "react", "todo"],
+      tabs: ["Tasks", "Completed", "Settings"],
+      roles: [
+        {
+          name: "Task List",
+          features: ["Add Task", "Mark Complete", "Delete"],
+        },
+        {
+          name: "Organization",
+          features: ["Priority Tags", "Due Dates", "Filters"],
+        },
+        {
+          name: "Tracking",
+          features: ["Progress Stats", "Completed View", "History"],
+        },
+      ],
+      badges: ["Minimal", "Task Management", "Productivity"],
+      screenshot: "/placeholder.svg",
+    },
   ]
 
   const experiences = [
     {
+      title: "Mid-Level Full Stack Developer & Team Lead (CRM Product)",
+      company: "Skill Prompt",
+      location: "Full-Time",
+      period: "January 2026 - Present",
+      description:
+        "Leading the CRM product team as Team Lead, managing both new feature development and bug fixes across frontend and backend. Responsible for technical direction, code quality, and coordinating delivery across the team.",
+    },
+    {
+      title: "Managing Director & Full Stack Developer",
+      company: "Suindra Groups Pvt. Ltd.",
+      location: "Part-Time",
+      period: "June 2026 - Present",
+      description:
+        "Maintain the Buynow e-commerce website and mobile app, and oversee the development and progress of Sellnow and Giftnow under the organization. Involved in development work as well as broader decisional and strategic matters for the group.",
+    },
+    {
       title: "Full-Stack Developer",
       company: "Procit BV",
       location: "Netherlands (Remote)",
-      period: "April 2025 - Present",
+      period: "April 2025 - December 2025",
       description:
-        "Contributing to Smartflow project, developing scalable web and mobile applications with focus on performance optimization.",
-    },
-    {
-      title: "Co-Founder & CTO",
-      company: "Softrflow Pvt. Ltd.",
-      location: "USA (Remote)",
-      period: "June 2024 - Present",
-      description:
-        "Leading product development for e-wallet fraud detection system and educational trip management platform.",
+        "Contributed to Smartflow project, developing scalable web and mobile applications with focus on performance optimization.",
     },
     {
       title: "Research Intern",
@@ -1012,6 +1380,22 @@ export default function Portfolio() {
       period: "June 2024 - March 2025",
       description:
         "Contributed to Rishi Chat development and led multi-threat detection project using CCTV and computer vision.",
+    },
+    {
+      title: "Full Stack Web Developer",
+      company: "Kathmandu University Youth Red Cross Circle (KUYRCC)",
+      location: "Nepal",
+      period: "November 2024 - April 2025",
+      description:
+        "Led the development of the official website for KUYRCC as Developer Head. Built the beta version using React.js, ensuring a fully mobile-responsive design for seamless usability across devices. Collaborated closely with the Media Head to incorporate creative inputs, conduct research, and implement valuable feedback for an optimized user experience.",
+    },
+    {
+      title: "Open Source Contributor",
+      company: "IAGA Sentinel",
+      location: "Remote",
+      period: "June 2026 - Present",
+      description:
+        "Contributing to IAGA Sentinel, an AI governance and compliance platform focused on creating verifiable audit trails for AI agents and supporting EU AI Act requirements. Collaborating with an international development team, exploring AI security and governance concepts, participating in open-source workflows, and gaining hands-on experience with modern software engineering practices, APIs, and AI infrastructure.",
     },
   ]
 
@@ -1159,6 +1543,39 @@ export default function Portfolio() {
       
       {!loading && (
         <>
+          {/* IAGA Sentinel Alert Banner */}
+          <AnimatePresence>
+            {showIagaAlert && (
+              <motion.div
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.4 }}
+                className="fixed top-20 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-2xl"
+              >
+                <div className="bg-green-900/90 border border-green-500/50 rounded-lg shadow-lg backdrop-blur-md p-4 flex items-start gap-3">
+                  <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Award className="w-4 h-4 text-green-400" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-green-300 font-semibold text-sm">
+                      Now Open Source Contributor at IAGA Sentinel
+                    </p>
+                    <p className="text-green-100/80 text-xs mt-1 leading-relaxed">
+                      Contributing to an AI governance and compliance platform creating verifiable audit trails for AI agents and supporting EU AI Act requirements — collaborating with an international team on AI security, open-source workflows, and AI infrastructure.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowIagaAlert(false)}
+                    className="text-green-400 hover:text-green-200 flex-shrink-0"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Animated Background */}
           <div className="fixed inset-0 overflow-hidden pointer-events-none">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.15),rgba(255,255,255,0))]"></div>
@@ -1316,7 +1733,7 @@ export default function Portfolio() {
                   <div className="relative h-[600px]">
                     {/* Profile Photo */}
                     <motion.div 
-                      className="absolute -top-10 right-10 z-20"
+                      className="absolute top-4 right-10 z-20"
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5 }}
