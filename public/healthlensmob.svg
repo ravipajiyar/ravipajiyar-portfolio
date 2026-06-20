@@ -1,0 +1,96 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#004D40;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00251A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Main background -->
+  <rect width="800" height="600" fill="url(#bg-gradient)" />
+
+  <!-- App Title -->
+  <text x="340" y="50" font-family="Arial, sans-serif" font-size="32" fill="white" font-weight="bold">
+    HealthLens
+  </text>
+
+  <!-- Phone Frame - Scaled and centered -->
+  <g transform="translate(250, 70) scale(0.8)">
+    <!-- Outer phone frame -->
+    <rect x="0" y="0" width="380" height="620" rx="30" fill="#004D40" />
+    <rect x="10" y="10" width="360" height="600" rx="25" fill="#00695C" />
+    
+    <!-- Screen -->
+    <rect x="20" y="20" width="340" height="580" rx="20" fill="#ffffff" />
+
+    <!-- Status Bar -->
+    <rect x="20" y="20" width="340" height="40" rx="20" fill="#004D40" />
+    <text x="40" y="45" fill="white" font-size="14">9:41 AM</text>
+    <circle cx="320" cy="40" r="8" fill="#4CAF50" />
+
+    <!-- App Content -->
+    <!-- Header Section -->
+    <rect x="40" y="80" width="300" height="80" rx="10" fill="#E8F5E9" />
+    <text x="60" y="120" fill="#004D40" font-size="20" font-weight="bold">Welcome to HealthLens</text>
+    <text x="60" y="140" fill="#00695C" font-size="14">AI-Powered Nutrition Assistant</text>
+
+    <!-- Scanner Section -->
+    <rect x="40" y="180" width="300" height="100" rx="10" fill="#004D40" />
+    <circle cx="80" cy="230" r="20" fill="#4CAF50" />
+    <text x="120" y="220" fill="white" font-size="18" font-weight="bold">Food Scanner</text>
+    <text x="120" y="240" fill="#81C784" font-size="14">Scan food for instant analysis</text>
+
+    <!-- Tech Stack -->
+    <g transform="translate(40, 300)">
+      <rect width="140" height="60" rx="10" fill="#00695C" />
+      <text x="20" y="30" fill="white" font-size="14">React Native</text>
+      <text x="20" y="45" fill="#81C784" font-size="12">Frontend</text>
+    </g>
+
+    <g transform="translate(200, 300)">
+      <rect width="140" height="60" rx="10" fill="#00695C" />
+      <text x="20" y="30" fill="white" font-size="14">Node.js + Express</text>
+      <text x="20" y="45" fill="#81C784" font-size="12">Backend</text>
+    </g>
+
+    <!-- Features List -->
+    <rect x="40" y="380" width="300" height="180" rx="10" fill="#E8F5E9" />
+    
+    <!-- Feature Items -->
+    <g transform="translate(60, 400)">
+      <circle cx="10" cy="10" r="5" fill="#004D40" />
+      <text x="30" y="15" fill="#004D40" font-size="16">AI-Powered Analysis</text>
+    </g>
+
+    <g transform="translate(60, 430)">
+      <circle cx="10" cy="10" r="5" fill="#004D40" />
+      <text x="30" y="15" fill="#004D40" font-size="16">Nutrition Tracking</text>
+    </g>
+
+    <g transform="translate(60, 460)">
+      <circle cx="10" cy="10" r="5" fill="#004D40" />
+      <text x="30" y="15" fill="#004D40" font-size="16">Dietary Recommendations</text>
+    </g>
+
+    <g transform="translate(60, 490)">
+      <circle cx="10" cy="10" r="5" fill="#004D40" />
+      <text x="30" y="15" fill="#004D40" font-size="16">Personalized Meal Plans</text>
+    </g>
+
+    <g transform="translate(60, 520)">
+      <circle cx="10" cy="10" r="5" fill="#004D40" />
+      <text x="30" y="15" fill="#004D40" font-size="16">Health Progress Tracking</text>
+    </g>
+
+    <!-- Bottom Navigation Bar -->
+    <rect x="20" y="560" width="340" height="40" rx="20" fill="#004D40" />
+    <g transform="translate(50, 580)">
+      <circle cx="0" cy="0" r="8" fill="white" />
+      <circle cx="70" cy="0" r="8" fill="white" />
+      <circle cx="140" cy="0" r="8" fill="white" />
+      <circle cx="210" cy="0" r="8" fill="white" />
+      <circle cx="280" cy="0" r="8" fill="white" />
+    </g>
+  </g>
+</svg>

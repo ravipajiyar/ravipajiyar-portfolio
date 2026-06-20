@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+    <!-- Background with subtle gradient -->
+    <defs>
+        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#f8f9ff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f0f2ff;stop-opacity:1" />
+        </linearGradient>
+        <!-- Card Shadow -->
+        <filter id="dropShadow">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+            <feOffset dx="0" dy="2"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.3"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    
+    <!-- Main Background -->
+    <rect width="800" height="600" fill="url(#bgGradient)"/>
+    
+    <!-- Header Navigation -->
+    <rect width="800" height="70" fill="#ffffff" filter="url(#dropShadow)"/>
+    <text x="30" y="45" fill="#4F46E5" font-family="Arial" font-weight="bold" font-size="24">Course</text>
+    <text x="110" y="45" fill="#818CF8" font-family="Arial" font-weight="bold" font-size="24">Craft</text>
+    
+    <!-- Navigation Items -->
+    <text x="250" y="45" fill="#4B5563" font-family="Arial" font-size="14">Dashboard</text>
+    <text x="350" y="45" fill="#4B5563" font-family="Arial" font-size="14">My Courses</text>
+    <text x="450" y="45" fill="#4B5563" font-family="Arial" font-size="14">Generate</text>
+    
+    <!-- User Section -->
+    <circle cx="740" cy="35" r="15" fill="#4F46E5"/>
+    <text x="650" y="40" fill="#4B5563" font-family="Arial" font-size="14">Start Creating</text>
+    
+    <!-- Main Content Area -->
+    <text x="40" y="120" fill="#111827" font-family="Arial" font-weight="bold" font-size="28">Create AI-Powered Course Modules</text>
+    <text x="40" y="150" fill="#6B7280" font-family="Arial" font-size="16">Transform your subject expertise into structured learning experiences</text>
+    
+    <!-- AI Generation Card -->
+    <rect x="40" y="180" width="720" height="160" rx="8" fill="#ffffff" filter="url(#dropShadow)"/>
+    <text x="60" y="210" fill="#111827" font-family="Arial" font-weight="bold" font-size="18">Generate Course Content</text>
+    <rect x="60" y="230" width="680" height="40" rx="6" fill="#F3F4F6"/>
+    <text x="75" y="255" fill="#9CA3AF" font-family="Arial" font-size="14">Enter your subject or topic...</text>
+    <rect x="60" y="280" width="120" height="40" rx="6" fill="#4F46E5"/>
+    <text x="85" y="305" fill="#ffffff" font-family="Arial" font-weight="bold" font-size="14">Generate</text>
+    
+    <!-- Features Section -->
+    <rect x="40" y="360" width="230" height="200" rx="8" fill="#ffffff" filter="url(#dropShadow)"/>
+    <text x="60" y="390" fill="#111827" font-family="Arial" font-weight="bold" font-size="16">MERN Stack Backend</text>
+    <text x="60" y="420" fill="#6B7280" font-family="Arial" font-size="14">Powerful MongoDB storage</text>
+    <text x="60" y="440" fill="#6B7280" font-family="Arial" font-size="14">Express routing</text>
+    <text x="60" y="460" fill="#6B7280" font-family="Arial" font-size="14">React components</text>
+    
+    <rect x="285" y="360" width="230" height="200" rx="8" fill="#ffffff" filter="url(#dropShadow)"/>
+    <text x="305" y="390" fill="#111827" font-family="Arial" font-weight="bold" font-size="16">Python Integration</text>
+    <text x="305" y="420" fill="#6B7280" font-family="Arial" font-size="14">AI model processing</text>
+    <text x="305" y="440" fill="#6B7280" font-family="Arial" font-size="14">Data structuring</text>
+    <text x="305" y="460" fill="#6B7280" font-family="Arial" font-size="14">Content optimization</text>
+    
+    <rect x="530" y="360" width="230" height="200" rx="8" fill="#ffffff" filter="url(#dropShadow)"/>
+    <text x="550" y="390" fill="#111827" font-family="Arial" font-weight="bold" font-size="16">Llama API Features</text>
+    <text x="550" y="420" fill="#6B7280" font-family="Arial" font-size="14">Smart content generation</text>
+    <text x="550" y="440" fill="#6B7280" font-family="Arial" font-size="14">Module structuring</text>
+    <text x="550" y="460" fill="#6B7280" font-family="Arial" font-size="14">Learning path creation</text>
+    
+    <!-- Tech Stack Indicators -->
+    <circle cx="60" y="530" r="15" fill="#00ED64"/>
+    <circle cx="95" y="530" r="15" fill="#61DAFB"/>
+    <circle cx="130" y="530" r="15" fill="#4DB33D"/>
+    <circle cx="165" y="530" r="15" fill="#F0DB4F"/>
+    
+    <!-- AI Processing Indicator -->
+    <rect x="650" y="280" width="90" height="40" rx="6" fill="#818CF8"/>
+    <text x="665" y="305" fill="#ffffff" font-family="Arial" font-size="12">AI Powered</text>
+</svg>
