@@ -1543,38 +1543,7 @@ export default function Portfolio() {
       
       {!loading && (
         <>
-          {/* IAGA Sentinel Alert Banner */}
-          <AnimatePresence>
-            {showIagaAlert && (
-              <motion.div
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.4 }}
-                className="fixed top-20 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-2xl"
-              >
-                <div className="bg-green-900/90 border border-green-500/50 rounded-lg shadow-lg backdrop-blur-md p-4 flex items-start gap-3">
-                  <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Award className="w-4 h-4 text-green-400" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-green-300 font-semibold text-sm">
-                      Now Open Source Contributor at IAGA Sentinel
-                    </p>
-                    <p className="text-green-100/80 text-xs mt-1 leading-relaxed">
-                      Contributing to an AI governance and compliance platform creating verifiable audit trails for AI agents and supporting EU AI Act requirements — collaborating with an international team on AI security, open-source workflows, and AI infrastructure.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => setShowIagaAlert(false)}
-                    className="text-green-400 hover:text-green-200 flex-shrink-0"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+
 
           {/* Animated Background */}
           <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -1813,6 +1782,39 @@ export default function Portfolio() {
               </div>
             </div>
           </section>
+
+          {/* IAGA Sentinel Alert Banner */}
+          <AnimatePresence>
+            {showIagaAlert && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="container mx-auto px-6 -mt-10 mb-6"
+              >
+                <div className="bg-green-900/90 border border-green-500/50 rounded-lg shadow-lg backdrop-blur-md p-4 flex items-start gap-3">
+                  <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Award className="w-4 h-4 text-green-400" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-green-300 font-semibold text-sm">
+                      Now Open Source Contributor at IAGA Sentinel
+                    </p>
+                    <p className="text-green-100/80 text-xs mt-1 leading-relaxed">
+                      Contributing to an AI governance and compliance platform creating verifiable audit trails for AI agents and supporting EU AI Act requirements — collaborating with an international team on AI security, open-source workflows, and AI infrastructure.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowIagaAlert(false)}
+                    className="text-green-400 hover:text-green-200 flex-shrink-0"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Overview Section */}
           <section id="about" className="py-20">
