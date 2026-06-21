@@ -29,7 +29,13 @@ import {
   FileText,
   ChevronLeft,
   ChevronRight,
-  BookOpen
+  BookOpen,
+  FlaskConical,
+  Database,
+  Server,
+  Cpu,
+  Globe,
+  Wrench
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -296,6 +302,10 @@ function Chatbot() {
       "Full Stack Web Developer at Kathmandu University Youth Red Cross Circle - November 2024 to April 2025",
       "Open Source Contributor at IAGA Sentinel - June 2026 to Present",
     ],
+    research: [
+      "Multi Scale Deep Learning for Hairline Crack Detection and Analysis using Hybrid CNN and Transformer Architecture - Submitted for publication",
+      "High-Quality Neural Text-to-Speech for Low-Resource Nepali: A Data-Efficient Transfer Learning Approach - Submitted for publication",
+    ],
     skills: [
       "Programming: JavaScript, Python, C++, TypeScript",
       "Frontend: React.js, Next.js, Tailwind CSS, React Native",
@@ -331,6 +341,10 @@ function Chatbot() {
       return `Ravi has worked on several impressive projects: ${raviData.projects.slice(0, 3).join("; ")}. His projects span from AI-powered applications to emergency response systems.`
     }
 
+    if (input.includes("research") || input.includes("paper") || input.includes("publication")) {
+      return `Ravi has been involved in academic research: ${raviData.research.join("; ")}.`
+    }
+
     if (input.includes("experience") || input.includes("work") || input.includes("job")) {
       return `Ravi has diverse professional experience: ${raviData.experience.slice(0, 2).join("; ")}. He's currently working as a Team Lead at Skill Prompt and is also Managing Director & Full Stack Developer at Suindra Groups.`
     }
@@ -355,7 +369,7 @@ function Chatbot() {
       return `Hello! I'm here to tell you about Ravi Kumar Pajiyar, a talented ${raviData.personal.title} from ${raviData.personal.location}. What would you like to know about him?`
     }
 
-    return "I'd be happy to tell you more about Ravi! You can ask me about his skills, projects, work experience, education, achievements, or how to contact him. What interests you most?"
+    return "I'd be happy to tell you more about Ravi! You can ask me about his skills, projects, work experience, research, education, achievements, or how to contact him. What interests you most?"
   }
 
   const handleSend = async () => {
@@ -787,6 +801,7 @@ export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [showIagaAlert, setShowIagaAlert] = useState(false)
+  const [experienceTab, setExperienceTab] = useState<"work" | "research">("work")
 
   useEffect(() => {
     if (!loading) {
@@ -1340,11 +1355,12 @@ export default function Portfolio() {
     },
   ]
 
-  const experiences = [
+  // Work Experience — ordered newest to oldest
+  const workExperiences = [
     {
       title: "Mid-Level Full Stack Developer & Team Lead (CRM Product)",
       company: "Skill Prompt",
-      location: "Full-Time",
+      location: "Remote, Full-Time",
       period: "January 2026 - Present",
       description:
         "Leading the CRM product team as Team Lead, managing both new feature development and bug fixes across frontend and backend. Responsible for technical direction, code quality, and coordinating delivery across the team.",
@@ -1358,20 +1374,20 @@ export default function Portfolio() {
         "Maintain the Buynow e-commerce website and mobile app, and oversee the development and progress of Sellnow and Giftnow under the organization. Involved in development work as well as broader decisional and strategic matters for the group.",
     },
     {
+      title: "Open Source Contributor",
+      company: "IAGA Sentinel",
+      location: "Remote",
+      period: "June 2026 - Present",
+      description:
+        "Contributing to IAGA Sentinel, an AI governance and compliance platform focused on creating verifiable audit trails for AI agents and supporting EU AI Act requirements. Collaborating with an international development team, exploring AI security and governance concepts, participating in open-source workflows, and gaining hands-on experience with modern software engineering practices, APIs, and AI infrastructure.",
+    },
+    {
       title: "Full-Stack Developer",
       company: "Procit BV",
       location: "Netherlands (Remote)",
       period: "April 2025 - December 2025",
       description:
         "Contributed to Smartflow project, developing scalable web and mobile applications with focus on performance optimization.",
-    },
-    {
-      title: "Research Intern",
-      company: "IOT R&D, Kathmandu University",
-      location: "Nepal",
-      period: "March 2025 - Present",
-      description:
-        "Conducting IoT and AI-based research on natural disaster prediction using LoRaWAN and computer vision.",
     },
     {
       title: "Full Stack Developer & LLM Engineer",
@@ -1389,13 +1405,33 @@ export default function Portfolio() {
       description:
         "Led the development of the official website for KUYRCC as Developer Head. Built the beta version using React.js, ensuring a fully mobile-responsive design for seamless usability across devices. Collaborated closely with the Media Head to incorporate creative inputs, conduct research, and implement valuable feedback for an optimized user experience.",
     },
+  ]
+
+  // Research Experience — ordered newest to oldest
+  const researchExperiences = [
     {
-      title: "Open Source Contributor",
-      company: "IAGA Sentinel",
-      location: "Remote",
-      period: "June 2026 - Present",
+      title: "Research Intern",
+      company: "IOT R&D, Kathmandu University",
+      location: "Nepal",
+      period: "March 2025 - Present (6 months)",
       description:
-        "Contributing to IAGA Sentinel, an AI governance and compliance platform focused on creating verifiable audit trails for AI agents and supporting EU AI Act requirements. Collaborating with an international development team, exploring AI security and governance concepts, participating in open-source workflows, and gaining hands-on experience with modern software engineering practices, APIs, and AI infrastructure.",
+        "Conducting IoT and AI-based research on natural disaster prediction using LoRaWAN and computer vision.",
+    },
+    {
+      title: "Multi Scale Deep Learning for Hairline Crack Detection and Analysis using Hybrid CNN and Transformer Architecture",
+      company: "Dept. of Computer Engineering, Kathmandu University",
+      location: "Under Prof. Dr. Sudan Jha, with Sarita Sapkota",
+      period: "Submitted for publication",
+      description:
+        "Developed a hybrid CNN-Transformer model for structural crack detection and classification to enhance predictive maintenance. Tools: Python, TensorFlow, OpenCV.",
+    },
+    {
+      title: "High-Quality Neural Text-to-Speech for Low-Resource Nepali: A Data-Efficient Transfer Learning Approach",
+      company: "Dept. of Software Engineering, NCIT",
+      location: "Under Assoc. Prof. Dr. Prakash Poudyal, with Sristi Ghimire",
+      period: "Submitted for publication",
+      description:
+        "Developed a FastSpeech 2–based neural TTS system with a Devanagari text pipeline for low-resource Nepali, improving speech naturalness and clarity. Tools: Python, TensorFlow, ESPnet, Praat.",
     },
   ]
 
@@ -1456,66 +1492,37 @@ export default function Portfolio() {
     },
   ]
 
+  // Technical Expertise — redesigned as icon-led category cards with skill chips (no percentage bars)
   const techStack = [
     {
       category: "Frontend",
-      skills: [
-        { name: "React.js", level: 95 },
-        { name: "Next.js", level: 90 },
-        { name: "TypeScript", level: 85 },
-        { name: "Tailwind CSS", level: 90 },
-        { name: "React Native", level: 80 },
-      ],
+      icon: Globe,
+      skills: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "React Native"],
     },
     {
       category: "Backend",
-      skills: [
-        { name: "Node.js", level: 85 },
-        { name: "Express.js", level: 85 },
-        { name: "Django", level: 75 },
-        { name: "WebSockets", level: 80 },
-        { name: "RESTful APIs", level: 90 },
-      ],
+      icon: Server,
+      skills: ["Node.js", "Express.js", "Django", "WebSockets", "RESTful APIs"],
     },
     {
       category: "Languages",
-      skills: [
-        { name: "JavaScript", level: 95 },
-        { name: "Python", level: 85 },
-        { name: "C++", level: 75 },
-        { name: "HTML/CSS", level: 90 },
-        { name: "SQL", level: 80 },
-      ],
+      icon: Code,
+      skills: ["JavaScript", "Python", "C++", "HTML/CSS", "SQL"],
     },
     {
       category: "AI & Data",
-      skills: [
-        { name: "LLMs", level: 80 },
-        { name: "NLP", level: 75 },
-        { name: "Computer Vision", level: 70 },
-        { name: "Data Analysis", level: 85 },
-        { name: "Machine Learning", level: 75 },
-      ],
+      icon: Cpu,
+      skills: ["LLMs", "NLP", "Computer Vision", "Data Analysis", "Machine Learning"],
     },
     {
       category: "Databases",
-      skills: [
-        { name: "MongoDB", level: 85 },
-        { name: "PostgreSQL", level: 80 },
-        { name: "MySQL", level: 85 },
-        { name: "Firebase", level: 75 },
-        { name: "Redis", level: 70 },
-      ],
+      icon: Database,
+      skills: ["MongoDB", "PostgreSQL", "MySQL", "Firebase", "Redis"],
     },
     {
       category: "Tools",
-      skills: [
-        { name: "Git & GitHub", level: 90 },
-        { name: "Docker", level: 75 },
-        { name: "AWS", level: 70 },
-        { name: "CI/CD", level: 75 },
-        { name: "Figma", level: 80 },
-      ],
+      icon: Wrench,
+      skills: ["Git & GitHub", "Docker", "AWS", "CI/CD", "Figma"],
     },
   ]
 
@@ -1534,6 +1541,8 @@ export default function Portfolio() {
       section.scrollIntoView({ behavior: "smooth" })
     }
   }
+
+  const activeExperiences = experienceTab === "work" ? workExperiences : researchExperiences
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -1917,47 +1926,82 @@ export default function Portfolio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="text-center mb-16"
+                className="text-center mb-12"
               >
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">Work Experience.</h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">Experience.</h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-blue-400 mx-auto mb-8"></div>
               </motion.div>
 
-              <div className="relative">
-                <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-purple-600 to-blue-600"></div>
-
-                {experiences.map((exp, index) => (
-                  <motion.div
-                    key={index}
-                    className={`relative flex items-center mb-12 ${
-                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              {/* Tab Switcher */}
+              <div className="flex justify-center mb-16">
+                <div className="inline-flex bg-gray-900/60 border border-purple-900/30 rounded-full p-1.5">
+                  <button
+                    onClick={() => setExperienceTab("work")}
+                    className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                      experienceTab === "work"
+                        ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
+                        : "text-gray-400 hover:text-white"
                     }`}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: index * 0.2 }}
-                    viewport={{ once: true }}
                   >
-                    <div className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:pr-8" : "md:pl-8"}`}>
-                      <Card className="bg-gray-900/50 border-purple-900/30 backdrop-blur-sm hover:bg-gray-900/70 transition-all duration-300">
-                        <CardContent className="p-6">
-                          <div className="flex items-start justify-between mb-4">
-                            <div>
-                              <h3 className="text-xl font-bold text-white mb-1">{exp.title}</h3>
-                              <p className="text-purple-400 font-medium">{exp.company}</p>
-                              <p className="text-gray-400 text-sm">{exp.location}</p>
-                            </div>
-                            <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-600/30">
-                              {exp.period}
-                            </Badge>
-                          </div>
-                          <p className="text-gray-300 leading-relaxed">{exp.description}</p>
-                        </CardContent>
-                      </Card>
-                    </div>
+                    <Briefcase className="w-4 h-4" />
+                    Work Experience
+                  </button>
+                  <button
+                    onClick={() => setExperienceTab("research")}
+                    className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                      experienceTab === "research"
+                        ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
+                        : "text-gray-400 hover:text-white"
+                    }`}
+                  >
+                    <FlaskConical className="w-4 h-4" />
+                    Research Experience
+                  </button>
+                </div>
+              </div>
 
-                    <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-purple-600 to-blue-600"></div>
-                  </motion.div>
-                ))}
+              <div className="relative">
+                <motion.div
+                  key={experienceTab}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-purple-600 to-blue-600"></div>
+
+                  {activeExperiences.map((exp, index) => (
+                    <motion.div
+                      key={`${experienceTab}-${index}`}
+                      className={`relative flex items-center mb-12 ${
+                        index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                      }`}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: index * 0.15 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:pr-8" : "md:pl-8"}`}>
+                        <Card className="bg-gray-900/50 border-purple-900/30 backdrop-blur-sm hover:bg-gray-900/70 transition-all duration-300">
+                          <CardContent className="p-6">
+                            <div className="flex items-start justify-between mb-4 gap-3">
+                              <div>
+                                <h3 className="text-xl font-bold text-white mb-1">{exp.title}</h3>
+                                <p className="text-purple-400 font-medium">{exp.company}</p>
+                                <p className="text-gray-400 text-sm">{exp.location}</p>
+                              </div>
+                              <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-600/30 whitespace-nowrap">
+                                {exp.period}
+                              </Badge>
+                            </div>
+                            <p className="text-gray-300 leading-relaxed">{exp.description}</p>
+                          </CardContent>
+                        </Card>
+                      </div>
+
+                      <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-purple-600 to-blue-600"></div>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
             </div>
           </section>
@@ -1976,38 +2020,42 @@ export default function Portfolio() {
                 <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-blue-400 mx-auto mb-8"></div>
               </motion.div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {techStack.map((category, catIndex) => (
-                  <motion.div
-                    key={catIndex}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-                    viewport={{ once: true }}
-                    className="bg-gray-900/50 border border-purple-900/30 rounded-lg p-6"
-                  >
-                    <h3 className="text-xl font-semibold text-center mb-6 text-purple-400">{category.category}</h3>
-                    <div className="space-y-4">
-                      {category.skills.map((skill, index) => (
-                        <div key={index} className="space-y-2">
-                          <div className="flex justify-between">
-                            <span className="text-white font-medium">{skill.name}</span>
-                            <span className="text-purple-400">{skill.level}%</span>
-                          </div>
-                          <div className="w-full bg-gray-800 rounded-full h-2.5 overflow-hidden">
-                            <motion.div
-                              className="h-full rounded-full bg-gradient-to-r from-purple-600 to-blue-600"
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${skill.level}%` }}
-                              transition={{ duration: 1.5, delay: index * 0.1 }}
-                              viewport={{ once: true }}
-                            />
-                          </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {techStack.map((category, catIndex) => {
+                  const CategoryIcon = category.icon
+                  return (
+                    <motion.div
+                      key={catIndex}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: catIndex * 0.08 }}
+                      viewport={{ once: true }}
+                      whileHover={{ y: -4 }}
+                      className="relative bg-gray-900/50 border border-purple-900/30 rounded-xl p-6 overflow-hidden group hover:border-purple-500/50 transition-colors duration-300"
+                    >
+                      {/* subtle corner glow */}
+                      <div className="absolute -top-10 -right-10 w-32 h-32 bg-purple-600/10 rounded-full blur-2xl group-hover:bg-purple-600/20 transition-colors duration-300" />
+
+                      <div className="relative flex items-center gap-3 mb-5">
+                        <div className="w-11 h-11 bg-gradient-to-br from-purple-600/30 to-blue-600/30 rounded-lg flex items-center justify-center border border-purple-500/30">
+                          <CategoryIcon className="w-5 h-5 text-purple-300" />
                         </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
+                        <h3 className="text-lg font-semibold text-white">{category.category}</h3>
+                      </div>
+
+                      <div className="relative flex flex-wrap gap-2">
+                        {category.skills.map((skill, index) => (
+                          <span
+                            key={index}
+                            className="text-sm px-3 py-1.5 rounded-full bg-gray-800/80 text-gray-200 border border-gray-700/80 hover:border-purple-500/50 hover:text-purple-300 transition-colors duration-200"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )
+                })}
               </div>
             </div>
           </section>
